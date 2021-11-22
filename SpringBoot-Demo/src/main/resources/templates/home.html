@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>資料表關聯圖</title>
+	<th:block th:include="./include/header :: header"></th:block>
+	<style type="text/css">
+		.img-responsive{
+			display: block;
+			height: auto;
+			max-width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2" style="text-align: center;">
+		<h1>資料表關聯圖</h1>
+		<img class="img-responsive" th:src="@{/images/psi.PNG}"  style="display:block; margin:auto;"/>
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

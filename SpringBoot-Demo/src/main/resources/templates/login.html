@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>登入</title>
+	<th:block th:include="./include/header :: header"></th:block>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2">
+		<h2>登入頁面</h2>
+		<form th:action="@{/login/accpass}" th:object="${employee}" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="employee.account" class="col-sm-2 control-label">帳號：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{account}" placeholder="請輸入account1" class="form-control">
+				</div>
+				<div th:if="${#fields.hasErrors('account')}">
+					<p th:each="err:${#fields.errors('account')}" th:text="${err}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="employee.password" class="col-sm-2 control-label">密碼：</label>
+				<div class="col-sm-5">
+					<input type="password" th:field="*{password}" placeholder="請輸入password1" class="form-control">
+				</div>
+			</div>
+			<p/>
+			<button type="submit" class="col-sm-offset-2 btn btn-primary">登入</button>
+		</form>
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

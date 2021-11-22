@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>部門資料維護</title>
+	<th:block th:include="./include/header :: header"></th:block>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2">
+		<h2>部門資料修改</h2>
+		<form th:action="@{/department/update/{id}(id=${department.id})}" th:object="${department}" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">部門名稱:</label>
+				<div class="col-sm-5">
+					<input class="form-control" type="text" th:field="*{name}" placeholder="請輸入部門名稱">
+				</div>
+			</div>
+			<p/>
+			<div class="form-group">
+				<label for="manager" class="col-sm-2 control-label">主管:</label>
+				<div class="col-sm-5">
+					<input class="form-control" type="text" th:field="*{manager}" placeholder="請輸入主管姓名">
+				</div>
+			</div>
+			<p/>
+			<div class="form-group">
+				<div th:if="${#fields.hasErrors('*')}" class="col-sm-offset-2 col-sm-5 alert alert-danger">
+					<p th:each="err:${#fields.errors('*')}" th:text="${err}">
+				</div>
+			</div>
+			<p/>
+			<button type="submit" class="col-sm-offset-2 btn btn-primary">修改部門</button>
+			<a th:href="@{/department/}" class="btn btn-primary">回上一頁</a>
+		</form>
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

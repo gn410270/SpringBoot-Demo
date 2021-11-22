@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>客戶資料維護</title>
+	<th:block th:include="./include/header :: header"></th:block>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2">
+		<h2>修改客戶資料</h2>
+		<form th:action="@{/customer/update/{id}(id=${customer.id})}" method="post" th:object="${customer}" class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">客戶名稱：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{name}" placeholder="請輸入客戶名稱" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="phone_number" class="col-sm-2 control-label">電話號碼：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{phone_number}" placeholder="請輸入客戶電話號碼" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="fax" class="col-sm-2 control-label">傳真號碼：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{fax}" placeholder="請輸入客戶傳真號碼" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="tax_id" class="col-sm-2 control-label">統一編號：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{tax_id}" placeholder="請輸入統一編號" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="address" class="col-sm-2 control-label">地址：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{address}" placeholder="請輸客戶地址" class="form-control">
+				</div>
+			</div>
+			<p/>
+			<div class="form-group">
+				<div th:if="${#fields.hasErrors('*')}" class="col-sm-offset-2 col-sm-5 alert alert-danger">
+					<p th:each="err:${#fields.errors('*')}" th:text="${err}">
+				</div>
+			</div>
+			<p/>
+			<button type="submit" class="col-sm-offset-2 btn btn-primary">修改客戶</button>
+			<a th:href="@{/customer/}"  class="btn btn-primary">上一頁</a>
+		</form>
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

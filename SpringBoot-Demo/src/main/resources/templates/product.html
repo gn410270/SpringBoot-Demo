@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>商品資料維護</title>
+	<th:block th:include="./include/header :: header"></th:block>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2">
+		<h2>新增商品資料</h2>
+		<form th:action="@{/product/create}" th:object="${product}" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">商品名稱：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{name}" placeholder="請輸入商品名稱" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cost" class="col-sm-2 control-label">成本：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{cost}" placeholder="請輸入商品成本" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="price" class="col-sm-2 control-label">售價：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{price}" placeholder="請輸入商品價格" class="form-control">
+				</div>
+			</div>
+			<p/>
+			<div class="form-group">
+				<div th:if="${#fields.hasErrors('*')}" class="col-sm-offset-2 col-sm-5 alert alert-danger">
+					<p th:each="err:${#fields.errors('*')}" th:text="${err}">
+				</div>
+			</div>
+			<p/>
+			<button type="submit" class="col-sm-offset-2 btn btn-primary">新增商品</button>
+		</form>
+		<p/>
+		<h2>全部商品列表</h2>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>序號</th>
+					<th>名稱</th>
+					<th>成本</th>
+					<th>售價</th>
+					<th>編輯</th>
+					<th>刪除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.id}"></td>
+					<td th:text="${product.name}"></td>
+					<td th:text="${product.cost}"></td>
+					<td th:text="${product.price}"></td>
+					<td><a th:href="@{/product/edit/{id}(id=${product.id})}" class="btn btn-warning">編輯</a></td>
+					<td><a th:href="@{/product/delete/{id}(id=${product.id})}" class="btn btn-danger">刪除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

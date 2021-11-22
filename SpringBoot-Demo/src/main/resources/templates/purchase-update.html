@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>採購單資料維護</title>
+	<th:block th:include="./include/header :: header"></th:block>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2">
+		<h2>修改採購單資料</h2>
+		<form th:action="@{/purchase/update/{id}(id=${purchase.id})}" th:object="${purchase}" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="date" class="col-sm-2 control-label">進貨日期：</label>
+				<div class="col-sm-5">
+					<input type="date" th:field="*{date}" class="form-control" name="date">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="supplier" class="col-sm-2 control-label">供應商名稱：</label>
+				<div class="col-sm-5">
+					<select class="form-control select2" th:field="*{supplier.id}">
+						<option value="">
+						<option th:each="s:${suppliers}" th:value="${s.id}" th:text="${s.name}">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="employee" class="col-sm-2 control-label">經手員工：</label>
+				<div class="col-sm-5">
+					<select class="form-control select2" th:field="*{employee.id}">
+						<option value="">
+						<option th:each="e:${employees}" th:value="${e.id}" th:text="${e.name}">
+					</select>
+				</div>
+			</div>
+			<p/>
+			<div class="form-group">
+				<div th:if="${#fields.hasErrors('*')}" class="col-sm-offset-2 col-sm-5 alert alert-danger">
+					<p th:each="err:${#fields.errors('*')}" th:text="${err}">
+				</div>
+			</div>
+			<p/>
+			<button type="submit" class="col-sm-offset-2 btn btn-primary">修改採購單</button>
+			<a th:href="@{/purchase/}" class="btn btn-primary">回上一頁</a>
+			<br/>
+		</form>
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

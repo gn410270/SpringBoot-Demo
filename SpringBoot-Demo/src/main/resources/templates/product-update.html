@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>商品資料修改</title>
+	<th:block th:include="./include/header :: header"></th:block>
+</head>
+<body>
+	<th:block th:include="./include/navbar :: navbar"></th:block>
+	
+	<div class="container my-2">
+		<h2>修改商品資料</h2>
+		<form th:action="@{/product/update/{id}(id=${product.id})}" th:object="${product}" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">商品名稱：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{name}" placeholder="請輸入商品名稱" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cost" class="col-sm-2 control-label">成本：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{cost}" placeholder="請輸入商品成本" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="price" class="col-sm-2 control-label">售價：</label>
+				<div class="col-sm-5">
+					<input type="text" th:field="*{price}" placeholder="請輸入商品價格" class="form-control">
+				</div>
+			</div>
+			<p/>
+			<div class="form-group">
+				<div th:if="${#fields.hasErrors('*')}" class="col-sm-offset-2 col-sm-5 alert alert-danger">
+					<p th:each="err:${#fields.errors('*')}" th:text="${err}">
+				</div>
+			</div>
+			<p/>
+			<button type="submit" class="col-sm-offset-2 btn btn-primary">修改商品</button>
+		</form>
+		
+	</div>
+	
+	<th:block th:include="./include/footer :: footer"></th:block>
+</body>
+</html>

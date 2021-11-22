@@ -1,0 +1,87 @@
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="navbar">
+<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container my-2">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" th:href="@{/login/}">
+					Hi <span th:if="${session.isPass==true}" th:text="${session.username}"></span>
+				</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse navbar-dark bg-dark">
+				
+				<ul class="nav navbar-nav">
+					<li class="active"><a th:href="@{/home/}" href="#">Home</a></li>
+					<li><a th:href="@{/department/}" href="#">部門/員工資料</a></li>
+					<li><a th:href="@{/customer/}">客戶資料</a></li>
+					<li><a th:href="@{/order/}">訂單資料</a></li>
+					<li><a th:href="@{/product/}">商品資料</a></li>
+					<li><a th:href="@{/purchase/}">採購單資料</a></li>
+					<li><a th:href="@{/inventory/}">庫存資料</a></li>
+					<li><a th:href="@{/supplier/}">供應商資料</a></li>
+					<li><a th:href="@{/login/logout}"><span class="glyphicon glyphicon-log-in"></span> 登出</a></li>					
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">功能服務<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a th:href="@{/department/}" href="#">
+									<strong>部門/員工資料</strong>
+								</a>
+							</li>
+							<hr />
+							<li>
+								<a th:href="@{/customer/}">
+									<strong>客戶資料</strong>
+								</a>
+							</li>
+							<hr />
+							<li>
+								<a th:href="@{/order/}">
+									<strong>訂單資料</strong>
+								</a>
+							</li>
+							<hr />
+							<li>
+								<a th:href="@{/product/}">
+									<strong>商品資料</strong>
+								</a>
+							</li>
+							<hr />
+							<li>
+								<a th:href="@{/purchase/}">
+									<strong>採購單資料</strong>
+								</a>
+							</li>
+							<hr />
+							<li>
+								<a th:href="@{/inventory/}">
+									<strong>庫存資料</strong>
+								</a>
+							</li>
+							<hr />
+							<li>
+								<a th:href="@{/supplier/}">
+									<strong>供應商資料</strong>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+	</nav>
+	<br />
+	<br />
+	<br />
+</header>
